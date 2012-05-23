@@ -1,0 +1,9 @@
+[submodule "resources/node-mongodb-native"]
+	path = resources/node-mongodb-native
+	url = https://github.com/mongodb/node-mongodb-native.git
+[submodule "modules/mongo"]
+	path = modules/mongo
+	url = https://github.com/aussielunix/puppet-mongo.git
+[submodule "modules/apt"]
+	path = modules/apt
+	url = https://github.com/evolvingweb/puppet-apt.git
