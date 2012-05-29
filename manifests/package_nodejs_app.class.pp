@@ -37,14 +37,6 @@ class package_nodejs_app
 			ensure => present,
 			require => Exec['update-with-new-repos']  
 	}
-  
-	#exec
-	#{
-	#		'mongodb-nodejs-native-driver':
-	#		command => 'sudo npm -g install /vagrant/resources/node-mongodb-native',
-	#		path    => '/usr/bin/',
-	#		require => Package['npm']  
-	#}
 	
 	exec
 	{
@@ -87,6 +79,9 @@ class package_nodejs_app
 		group   => 'vagrant'
 	}	
 	
+	# I'm putting the node server project in here 
+	# currently having to remotely upload to it over sftp in netbeans because 
+	# of problems trying to create symbolic links within shared folders, which occurs during some npm package installs
 	file {'/var/www':
 		ensure => directory,
 		mode    => '0774',
