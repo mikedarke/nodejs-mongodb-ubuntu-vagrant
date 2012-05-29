@@ -15,5 +15,12 @@ class package_base
       ensure  => present,
       require => Exec['init']
   }
+  
+  package
+  {
+    'git-core':
+      ensure  => present,
+      require => Exec['init']
+  }
 
 }

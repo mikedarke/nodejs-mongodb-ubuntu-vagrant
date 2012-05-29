@@ -38,13 +38,21 @@ class package_nodejs_app
 			require => Exec['update-with-new-repos']  
 	}
   
+	#exec
+	#{
+	#		'mongodb-nodejs-native-driver':
+	#		command => 'sudo npm -g install /vagrant/resources/node-mongodb-native',
+	#		path    => '/usr/bin/',
+	#		require => Package['npm']  
+	#}
+	
 	exec
 	{
-		'mongodb-nodejs-native-driver':
-			command => 'sudo npm -g install /vagrant/resources/node-mongodb-native',
+		'mongojs-install':
+			command => 'sudo npm -g install mongojs',
 			path    => '/usr/bin/',
 			require => Package['npm']  
-	}
+	}	
 
 	exec
 	{
@@ -53,5 +61,37 @@ class package_nodejs_app
 			path    => '/usr/bin/',
 			require => Package['npm']  
 	}	
+	
+	exec
+	{
+		'express-install':
+			command => 'sudo npm -g install express',
+			path    => '/usr/bin/',
+			require => Package['npm']  
+	}
+
+	# Nice module for ensuring that the server restarts after an error
+	# needs to be global as we use it on the cli
+	exec
+	{
+		'forever-install':
+			command => 'sudo npm -g install forever',
+			path    => '/usr/bin/',
+			require => Package['npm']  
+	}	
+
+	file {'/var':
+		ensure => directory,
+		mode    => '0774',
+		owner   => 'vagrant',
+		group   => 'vagrant'
+	}	
+	
+	file {'/var/www':
+		ensure => directory,
+		mode    => '0774',
+		owner   => 'vagrant',
+		group   => 'vagrant'
+	}		
   
 }
